@@ -36,10 +36,10 @@ const Homepage = () => {
   // Effect depends on timeLeft
 
   return (
-    <div className="flex" style={{ maxHeight: "100vh", overflowY: "auto" }}>
+    <div className="flex bg-gray-200" style={{ maxHeight: "100vh", overflowY: "auto" }}>
       <Dashboard />
       {/* -----Dashboard name ----------*/}
-      <div class="min-h-screen p-7 w-full bg-gray-200 rounded-2xl mt-3 ml-3 mr-3">
+      <div class="min-h-screen p-7 w-full bg-white rounded-2xl mt-3 ml-3 mr-3">
         <div className="headingdash flex items-center">
           <DashboardIcon className="text-2xl" style={{ marginRight: "2px" }} />{" "}
           {/* Icon with spacing */}
@@ -48,7 +48,7 @@ const Homepage = () => {
         {/* -----Grids ----------*/}
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 mt-6">
           {/* -----Reverse Countdown ----------*/}
-          <div class="bg-white text-black p-6 rounded-3xl shadow-md sm:w-full h-[180px] md:w-[340px]">
+          <div class="bg-white text-black p-6 rounded-3xl shadow-md sm:w-full h-[180px] md:w-[340px] border-solid border-2 border-gray-200">
             <h1 class="text-2xl font-bold mb-4">Reverse Countdown</h1>
             <h4 class="text-5xl font-extrabold text-center mt-8">
               {timeLeft > 0
@@ -60,7 +60,7 @@ const Homepage = () => {
             </h4>
           </div>
           {/* -------Current Task ----------*/}
-          <div class="bg-yellow-100 text-black p-6 rounded-3xl shadow-md sm:w-full h-[180px] md:w-[340px]">
+          <div class="bg-yellow-100 text-black p-6 rounded-3xl shadow-md sm:w-full h-[180px] md:w-[340px] border-solid border-2 border-yellow-300">
             <h1 class="text-2xl font-bold mb-4">Ongoing Task</h1>
             <div className="flex items-center">
               {/* Progress bar container */}
@@ -88,7 +88,7 @@ const Homepage = () => {
             </div>
           </div>
           {/* -------upcoming deadline ----------*/}
-          <div class="bg-red-200 text-black p-6 rounded-3xl shadow-md sm:w-full h-[180px] md:w-[340px]">
+          <div class="bg-red-200 text-black p-6 rounded-3xl shadow-md sm:w-full h-[180px] md:w-[340px] border-solid border-2 border-red-300">
             <h1 class="text-2xl font-bold mb-4">Upcoming Deadline</h1>
             <ul>
               <li class="text-1xl font-semibold">E-commerce Web Application</li>
@@ -98,7 +98,7 @@ const Homepage = () => {
             </ul>
           </div>
           {/* -------to-do list status ----------*/}
-          <div class="bg-white text-black p-6 rounded-3xl shadow-md sm:w-full h-[380px] md:w-[340px] divide-y divide-solid">
+          <div class="bg-white text-black p-6 rounded-3xl shadow-md sm:w-full h-[380px] md:w-[340px] divide-y divide-solid border-solid border-2 border-gray-200">
             <h1 class="text-2xl font-bold mb-4">Today's To-Do List</h1>
             <ul>
               <li class="text-1xl font-bold">Brand color</li>
@@ -121,7 +121,7 @@ const Homepage = () => {
             </ul>
           </div>
           {/* -------project status ----------*/}
-          <div class="bg-white text-black p-6 rounded-3xl shadow-md sm:w-full h-[380px] md:w-[340px] divide-y divide-solid">
+          <div class="bg-white text-black p-6 rounded-3xl shadow-md sm:w-full h-[380px] md:w-[340px] divide-y divide-solid border-solid border-2 border-gray-200">
             <h1 class="text-2xl font-bold mb-4">Project Status</h1>
             <ul>
               <li class="text-1xl font-bold">Mocha Website Re-design</li>
@@ -149,7 +149,7 @@ const Homepage = () => {
             </ul> */}
           </div>
           {/* -------Notifications ----------*/}
-          <div class="bg-white text-black p-6 rounded-3xl shadow-md sm:w-full h-[380px] md:w-[340px] divide-y divide-solid">
+          <div class="bg-white text-black p-6 rounded-3xl shadow-md sm:w-full h-[380px] md:w-[340px] divide-y divide-solid border-solid border-2 border-gray-200">
             <h1 class="text-2xl font-bold mb-4">Notifications</h1>
             <ul>
               <li class="text-1xl font-bold">Website</li>
