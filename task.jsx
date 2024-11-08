@@ -16,33 +16,53 @@ const TaskCard = ({ content, category, label, dueDate }) => {
     setIsChecked(!isChecked);
   };
 
+  if (isChecked) {
+    return null; // When checked, return null to hide the TaskCard completely
+  }
+
   return (
     <div
-      className={`text-black p-4 rounded-2xl shadow-md w-[240px] ${bgColor[category]} flex flex-col relative ml-6`}
+      className={`text-black p-4 rounded-2xl shadow-md w-[240px] h-[150px] ${bgColor[category]} flex flex-col relative ml-6`}
     >
-      {/* Title */}
-      <div className="font-semibold text-base pr-8">{content}</div>
-
-      {/* Checkbox with absolute positioning */}
-      <div
-        className="absolute top-2 right-2 w-6 h-6 bg-white border-2 border-gray-500 rounded-lg flex items-center justify-center"
-        onClick={handleCheckboxChange}
-      >
-        <input
-          type="checkbox"
-          checked={isChecked}
-          onChange={handleCheckboxChange}
-          className="appearance-none w-4 h-4 rounded-sm checked:bg-green-500 checked:border-transparent"
-        />
+      {/* Title with truncation */}
+      <div className="font-semibold text-base pr-8 overflow-hidden text-ellipsis line-clamp-2">
+        {content}
       </div>
+
+      {/* Conditionally render checkbox based on category */}
+      {category !== "Completed" && (
+        <div
+          className="absolute top-2 right-2 w-6 h-6 bg-white border-2 border-gray-500 rounded-lg flex items-center justify-center"
+          onClick={handleCheckboxChange}
+        >
+          <input
+            type="checkbox"
+            checked={isChecked}
+            onChange={handleCheckboxChange}
+            className="appearance-none w-4 h-4 rounded-sm checked:bg-green-500 checked:border-transparent"
+          />
+        </div>
+      )}
 
       {/* Label and Due Date */}
-      <div className="mt-4 flex items-center justify-start">
-        <div className="bg-blue-500 text-white text-xs px-2 py-1 rounded-lg">
-          {label}
-        </div>
+      <div className="mt-4 mr-2 flex items-center justify-start">
+        {label ? (
+          <div
+            className={`text-white text-xs px-2 py-1 rounded-lg ${
+              label === "Completed"
+                ? "bg-green-500"
+                : label === "ASAP"
+                ? "bg-red-500"
+                : "bg-blue-500"
+            }`}
+          >
+            {label}
+          </div>
+        ) : (
+          <div className="h-6" /> // Placeholder for spacing when label is empty
+        )}
       </div>
-      <div className="mt-1 text-sm text-gray-600">{dueDate}</div>
+      <div className="mt-2 text-xs text-gray-500">{dueDate}</div>
     </div>
   );
 };
@@ -52,22 +72,21 @@ const Task = () => {
   // Define task data for each category
   const tasks = {
     New: [
-      { content: "Review and comment website design", label: "Feedback", dueDate: "6 days left" },
-      { content: "Prepare design files for web developer", label: "", dueDate: "3 days left" },
-      { content: "Send new website link to the team", label: "ASAP", dueDate: "5 days left" },
-      { content: "Fix all the bugs reported by the team", label: "Low priority", dueDate: "7 days left" },
+      { content: "Review and comment website design", label: "ASAP", dueDate: "6 days left" },
+      { content: "Prepare design files for web developer developer", label: "", dueDate: "3 days left" },
+      { content: "Send new website link to the team", label: "Feedback", dueDate: "5 days left" },
     ],
     InProgress: [
-      { content: "Design the entire web in a chosen style", label: "In Progress", dueDate: "1 day left" },
-      { content: "Task 2", label: "Urgent", dueDate: "4 days left" },
-      { content: "Task 3", label: "ASAP", dueDate: "2 days left" },
+      { content: "Design the entire web in a chosen style", label: "ASAP", dueDate: "1 day left" },
+      { content: "Write meta title and meta description", label: "Low Priority", dueDate: "4 days left" },
+      { content: "Develop website using CMS platform", label: "", dueDate: "2 days left" },
     ],
     Overdue: [
-      { content: "Task 1", label: "Overdue", dueDate: "2 days ago" },
-      { content: "Task 2", label: "Critical", dueDate: "5 days ago" },
+      { content: "Write website copy in a detailed manner", label: "Low Priority", dueDate: "2 days ago" },
+      { content: "Design drafts in 3 different styles", label: "", dueDate: "5 days ago" },
     ],
     Completed: [
-      { content: "Task 1", label: "Completed", dueDate: "Completed" },
+      { content: "Develop a structure for a new website", label: "Completed", dueDate: "1 day ago" },
     ]
   };
 
@@ -118,7 +137,7 @@ const Task = () => {
               {/* Only render empty placeholders if there are fewer tasks than maxTasks */}
               {tasks[category].length < maxTasks &&
                 Array.from({ length: maxTasks - tasks[category].length }).map((_, i) => (
-                  <div key={`empty-placeholder-${i}`} className="w-[265px] h-[100px]"></div> // Placeholder div
+                  <div key={`empty-placeholder-${i}`} className="w-[265px] h-[150px]"></div> // Placeholder div
                 ))}
             </div>
           ))}
