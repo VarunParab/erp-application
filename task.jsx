@@ -22,10 +22,14 @@ const TaskCard = ({ content, category, label, dueDate }) => {
 
   return (
     <div
-      className={`text-black p-4 rounded-2xl shadow-md w-[240px] h-[150px] ${bgColor[category]} flex flex-col relative ml-6`}
+      className={`text-black p-4 rounded-2xl shadow-md w-[240px] h-[140px] ${bgColor[category]} flex flex-col relative ml-6`}
     >
       {/* Title with truncation */}
-      <div className="font-semibold text-base pr-8 overflow-hidden text-ellipsis line-clamp-2">
+      <div
+        className={`font-semibold text-sm overflow-hidden text-ellipsis line-clamp-2 ${
+          category === "Completed" ? "w-full" : "pr-8"
+        }`}
+      >
         {content}
       </div>
 
@@ -67,31 +71,68 @@ const TaskCard = ({ content, category, label, dueDate }) => {
   );
 };
 
-
 const Task = () => {
   // Define task data for each category
   const tasks = {
     New: [
-      { content: "Review and comment website design", label: "ASAP", dueDate: "6 days left" },
-      { content: "Prepare design files for web developer developer", label: "", dueDate: "3 days left" },
-      { content: "Send new website link to the team", label: "Feedback", dueDate: "5 days left" },
+      {
+        content: "Review and comment website design",
+        label: "ASAP",
+        dueDate: "6 days left",
+      },
+      {
+        content: "Prepare design files for web developer developer",
+        label: "",
+        dueDate: "3 days left",
+      },
+      {
+        content: "Send new website link to the team",
+        label: "Feedback",
+        dueDate: "5 days left",
+      },
     ],
     InProgress: [
-      { content: "Design the entire web in a chosen style", label: "ASAP", dueDate: "1 day left" },
-      { content: "Write meta title and meta description", label: "Low Priority", dueDate: "4 days left" },
-      { content: "Develop website using CMS platform", label: "", dueDate: "2 days left" },
+      {
+        content: "Design the entire web in a chosen style",
+        label: "ASAP",
+        dueDate: "1 day left",
+      },
+      {
+        content: "Write meta title and meta description",
+        label: "Low Priority",
+        dueDate: "4 days left",
+      },
+      {
+        content: "Develop website using CMS platform",
+        label: "",
+        dueDate: "2 days left",
+      },
     ],
     Overdue: [
-      { content: "Write website copy in a detailed manner", label: "Low Priority", dueDate: "2 days ago" },
-      { content: "Design drafts in 3 different styles", label: "", dueDate: "5 days ago" },
+      {
+        content: "Write website copy in a detailed manner",
+        label: "Low Priority",
+        dueDate: "2 days ago",
+      },
+      {
+        content: "Design drafts in 3 different styles",
+        label: "",
+        dueDate: "5 days ago",
+      },
     ],
     Completed: [
-      { content: "Develop a structure for a new website", label: "Completed", dueDate: "1 day ago" },
-    ]
+      {
+        content: "Develop a structure for a new website",
+        label: "Completed",
+        dueDate: "1 day ago",
+      },
+    ],
   };
 
   // Find the maximum number of tasks in any category to set the row count
-  const maxTasks = Math.max(...Object.values(tasks).map(category => category.length));
+  const maxTasks = Math.max(
+    ...Object.values(tasks).map((category) => category.length)
+  );
 
   return (
     <div className="flex bg-gray-200">
@@ -114,15 +155,19 @@ const Task = () => {
 
         {/* Categories Header */}
         <div className="grid grid-cols-4 gap-2 text-center">
-          {["New Task", "In progress", "Overdue", "Completed"].map((category, index) => (
-            <div key={index} className="col-span-1 font-semibold">{category}</div>
-          ))}
+          {["New Task", "In progress", "Overdue", "Completed"].map(
+            (category, index) => (
+              <div key={index} className="col-span-1 font-semibold">
+                {category}
+              </div>
+            )
+          )}
         </div>
 
         <hr className="h-px my-3 bg-gray-200 border-0 dark:bg-gray-400" />
 
         {/* Task Grid */}
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-4 divide-x divide-gray-300">
           {Object.keys(tasks).map((category, index) => (
             <div key={index} className="grid gap-4">
               {tasks[category].map((task, i) => (
@@ -136,9 +181,14 @@ const Task = () => {
               ))}
               {/* Only render empty placeholders if there are fewer tasks than maxTasks */}
               {tasks[category].length < maxTasks &&
-                Array.from({ length: maxTasks - tasks[category].length }).map((_, i) => (
-                  <div key={`empty-placeholder-${i}`} className="w-[265px] h-[150px]"></div> // Placeholder div
-                ))}
+                Array.from({ length: maxTasks - tasks[category].length }).map(
+                  (_, i) => (
+                    <div
+                      key={`empty-placeholder-${i}`}
+                      className="w-[265px] h-[150px]"
+                    ></div> // Placeholder div
+                  )
+                )}
             </div>
           ))}
         </div>
