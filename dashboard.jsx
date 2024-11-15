@@ -2,12 +2,12 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import TaskIcon from "@mui/icons-material/Task";
 import ChatIcon from "@mui/icons-material/Chat";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
-import FolderCopyIcon from "@mui/icons-material/FolderCopy";
 import PersonIcon from "@mui/icons-material/Person";
-import BuildIcon from "@mui/icons-material/Build";
+import FolderIcon from '@mui/icons-material/Folder';
 import { useState } from "react";
+import SummarizeIcon from '@mui/icons-material/Summarize';
 import { Link } from "react-router-dom";
-
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 const Dashboard = () => {
   const [open, setOpen] = useState(true);
@@ -16,15 +16,16 @@ const Dashboard = () => {
   const Menus = [
     { title: "Dashboard", path: "/", icon: <DashboardIcon /> },
     { title: "Tasks", path: "/task", icon: <TaskIcon /> },
-    { title: "Projects", path: "/project", icon: <BuildIcon /> },
+    { title: "Projects", path: "/project", icon: <FolderIcon /> },
     { title: "Chats", path: "/chats", icon: <ChatIcon /> },
+    { title: "Notifications", path: "/notifications", icon: <NotificationsIcon /> },
     { title: "Analytics", path: "#", icon: <EqualizerIcon /> },
-    { title: "Reports", path: "#", icon: <FolderCopyIcon /> },
+    { title: "Reports", path: "#", icon: <SummarizeIcon /> },
     { title: "Profile", path: "/profile", icon: <PersonIcon /> },
   ];
 
   return (
-    <div className="flex" style={{ maxHeight: "100vh", overflowY: "auto" }}>
+    <div className="flex" style={{ maxHeight: "100vh"}}>
       <div
         className={`${
           open ? "w-72" : "w-20"
